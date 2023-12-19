@@ -1,0 +1,24 @@
+{
+  "name": "bdb",
+  "version": "1.0.0",
+  "description": "Bob's Discount Bolts",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/router": "^8.0.1",
+    "koa": "^2.8.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.2.1",
+    "nunjucks": "^3.2.0",
+    "superagent": "^5.1.0",
+    "toml": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}

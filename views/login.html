@@ -1,0 +1,34 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bob's Discount Bolt Signin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+    <form 
+       class="form-signin"
+       action="login{{ queryString }}" 
+       method="post">
+      <img class="mb-4" src=".\images\738-nut-and-bolt.svg" alt="" width="120">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+      <select class="custom-select d-block w-100" name="buyerCode" id="username" required>
+        <option value="">Sign in as...</option>
+        {% for user in config.users %}
+           <option value="{{ user.buyer_code }}">{{ user.username }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" value="anything" required>
+      <button class="btn btn-lg btn-primary btn-block" style="margin-top:30px" type="submit">Sign in</button>
+    </form>
+  </body>
+</html>

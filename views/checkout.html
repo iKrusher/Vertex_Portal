@@ -1,0 +1,132 @@
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<title>Checkout Bob's Discount Bolts</title>
+
+		<!-- Button JS is the library used to launch the Exemption Certificate Wizard-->
+		<script src="{{ config.ecw.wizard_base_address }}/wizard/button.js"></script>
+
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+
+	<body class="bg-light">
+
+		<!-- Header -->
+		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+			<img class="my-1 mr-md-auto font-weight-normal" src="./images/logo.png" alt="" width="170">
+			<div class="my-2 my-md-0 mr-md-3">Hello, <span style="text-transform: capitalize">{{ username }}</span></div>
+			<a id="logout-link" href="#">Logout</a>
+		</div>
+
+		<div id="error" class="alert alert-danger" role="alert" hidden>
+			This is a danger alert—check it out!
+		</div>
+
+		<div id="low-inventory-alert-container" class="container" hidden>
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Sorry, these items are no longer available!</strong> Please come back and try again soon.
+			<button id="dismiss-alert-button" type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</div>
+
+		<!-- Content -->
+		<div class="container">
+			<div class="py-5 text-center"></div>
+
+			<h4 class="d-flex justify-content-between align-items-center mb-3">
+				<span class="text-muted">Your cart</span>
+				<span class="badge badge-secondary badge-pill">3</span>
+			</h4>
+			<ul class="list-group mb-3">
+				<li class="list-group-item d-flex justify-content-between lh-condensed">
+					<div>
+						<h6 class="my-0">Eye bolts, Stainless steel</h6>
+						<small class="text-muted">1/4"-20 x 1-1/2"</small>
+					</div>
+					<span class="text-muted">$12</span>
+				</li>
+				<li class="list-group-item d-flex justify-content-between lh-condensed">
+					<div>
+						<h6 class="my-0">Hex bolts, Zinc plated steel</h6>
+						<small class="text-muted">3/8"-16 x 1/2"</small>
+					</div>
+					<span class="text-muted">$8</span>
+				</li>
+				<li class="list-group-item d-flex justify-content-between lh-condensed">
+					<div>
+						<h6 class="my-0">Flange bolts, Zinc plated steel</h6>
+						<small class="text-muted">1/2"-13 x 1/2"</small>
+					</div>
+					<span class="text-muted">$5</span>
+				</li>
+				<li class="list-group-item d-flex justify-content-between bg-light">
+					<div class="text-success">
+						<h6 class="my-0">Promo code</h6>
+						<small>BURGERS</small>
+					</div>
+					<span class="text-success">-$5</span>
+				</li>
+				<li class="list-group-item d-flex justify-content-between">
+					<span>Subtotal</span>
+					<span class="text-muted">$20.00</span>
+				</li>
+				<li class="list-group-item d-flex justify-content-between">
+					<span>Sales Tax</span>
+					<span class="text-muted">$1.20</span>
+				</li>
+				<li class="list-group-item d-flex justify-content-between">
+					<span>Total</span>
+					<strong>$21.20</strong>
+				</li>
+			</ul>
+
+			<form>
+				<button id="checkout-button" type="button" class="btn btn-primary">Checkout</button>
+				<button id="tax-exemption-button" type="button" class="btn btn-secondary">
+					Submit Tax Exemption {% if config.service.show_token_timeout %}
+						<span id="token-time-out" class="badge badge-light">00:00</span>
+					{% endif %}
+				</button>
+
+			</form>
+		</div>
+
+		<template id="certificate-template">
+			<div name="certificate-edit-renew-section" class="media text-muted pt-3">
+				<div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+					<div class="d-flex justify-content-between align-items-center w-100">
+						<strong name="certificate-title" class="text-gray-dark">Certificate Illinois</strong>
+						<div>
+							<button name="edit-link" type="button" class="btn btn-primary btn-sm">Edit</button>
+							<button name="renew-link" type="button" class="btn btn-secondary btn-sm">Renew</button>
+						</div>
+					</div>
+					<span style="font-weight:bold">uuid:</span>
+					<span name="certificate-id">123asdf-123sfa-12asf1-123-12</span>
+					<span style="font-weight:bold">edit-token: </span>
+					<a name="edit-token">abcde</a>
+					<div><span style="font-weight:bold">Edit Link:</span><a name="edit-link">abcde</a></div>
+					<div><span style="font-weight:bold">Renew Link:</span><a name="renew-link">abcde</a></div>
+				</div>
+			</div>
+		</template>
+
+		<div id="edit-renew-container" class="container" hidden>
+			<div id="edit-renew-list" class="my-3 p-3 bg-white rounded box-shadow">
+				<h6 class="border-bottom border-gray pb-2 mb-0">Certificates</h6>
+				<!-- Edit/Renew Nodes go here -->
+			</div>
+		</div>
+
+		<script src="scripts/bobs-bolts-ws.js"></script>
+		<script src="scripts/ecw-integration.js"></script>
+	</body>
+
+</html>
